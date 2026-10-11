@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ambil Nomor — RSMG</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700;800&family=Plus+Jakarta+Sans:wght@400&family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1 class="topbar-title">Ambil nomor antrian</h1>
+      <p class="topbar-sub">Pilih jenis layanan untuk mengambil nomor antrian.</p>
+    </div>
+    <div class="topbar-actions">
+      <a id="btn-layar" class="btn btn-outline" href="layar.html">Layar Antrian</a>
+      <button id="btn-ambil" class="btn btn-dark" type="button">Ambil Nomor</button>
+      <button id="btn-fullscreen" class="btn btn-outline" type="button">Layar Penuh</button>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="ambil-grid" aria-label="Daftar layanan untuk mengambil nomor antrian">
+
+      <!-- UMUM-1 -->
+      <article class="ambil-card" data-jenis="UMUM-1">
+        <div class="ambil-card-head">
+          <span class="ambil-nama">UMUM-1</span>
+          <span class="badge-code">A</span>
+        </div>
+        <button class="btn btn-primary btn-block" type="button" data-action="ambil">Ambil Nomor</button>
+        <details>
+          <summary class="ambil-priority-label">Ambil dengan prioritas ▼</summary>
+          <div class="ambil-chips">
+            <button class="chip" type="button" data-priority="Lansia">Lansia</button>
+            <button class="chip" type="button" data-priority="Disabilitas">Disabilitas</button>
+            <button class="chip" type="button" data-priority="VIP">VIP</button>
+          </div>
+        </details>
+      </article>
+
+      <!-- UMUM-2 -->
+      <article class="ambil-card" data-jenis="UMUM-2">
+        <div class="ambil-card-head">
+          <span class="ambil-nama">UMUM-2</span>
+          <span class="badge-code">B</span>
+        </div>
+        <button class="btn btn-primary btn-block" type="button" data-action="ambil">Ambil Nomor</button>
+        <details>
+          <summary class="ambil-priority-label">Ambil dengan prioritas ▼</summary>
+          <div class="ambil-chips">
+            <button class="chip" type="button" data-priority="Lansia">Lansia</button>
+            <button class="chip" type="button" data-priority="Disabilitas">Disabilitas</button>
+            <button class="chip" type="button" data-priority="VIP">VIP</button>
+          </div>
+        </details>
+      </article>
+
+      <!-- UMUM-3 -->
+      <article class="ambil-card" data-jenis="UMUM-3">
+        <div class="ambil-card-head">
+          <span class="ambil-nama">UMUM-3</span>
+          <span class="badge-code">C</span>
+        </div>
+        <button class="btn btn-primary btn-block" type="button" data-action="ambil">Ambil Nomor</button>
+        <details>
+          <summary class="ambil-priority-label">Ambil dengan prioritas ▼</summary>
+          <div class="ambil-chips">
+            <button class="chip" type="button" data-priority="Lansia">Lansia</button>
+            <button class="chip" type="button" data-priority="Disabilitas">Disabilitas</button>
+            <button class="chip" type="button" data-priority="VIP">VIP</button>
+          </div>
+        </details>
+      </article>
+
+      <!-- GIGI -->
+      <article class="ambil-card" data-jenis="GIGI">
+        <div class="ambil-card-head">
+          <span class="ambil-nama">GIGI</span>
+          <span class="badge-code">G</span>
+        </div>
+        <button class="btn btn-primary btn-block" type="button" data-action="ambil">Ambil Nomor</button>
+        <details>
+          <summary class="ambil-priority-label">Ambil dengan prioritas ▼</summary>
+          <div class="ambil-chips">
+            <button class="chip" type="button" data-priority="Lansia">Lansia</button>
+            <button class="chip" type="button" data-priority="Disabilitas">Disabilitas</button>
+            <button class="chip" type="button" data-priority="VIP">VIP</button>
+          </div>
+        </details>
+      </article>
+
+      <!-- FARMASI -->
+      <article class="ambil-card" data-jenis="FARMASI">
+        <div class="ambil-card-head">
+          <span class="ambil-nama">FARMASI</span>
+          <span class="badge-code">F</span>
+        </div>
+        <button class="btn btn-primary btn-block" type="button" data-action="ambil">Ambil Nomor</button>
+        <details>
+          <summary class="ambil-priority-label">Ambil dengan prioritas ▼</summary>
+          <div class="ambil-chips">
+            <button class="chip" type="button" data-priority="Lansia">Lansia</button>
+            <button class="chip" type="button" data-priority="Disabilitas">Disabilitas</button>
+            <button class="chip" type="button" data-priority="VIP">VIP</button>
+          </div>
+        </details>
+      </article>
+
+      <!-- PSIKOLOG -->
+      <article class="ambil-card" data-jenis="PSIKOLOG">
+        <div class="ambil-card-head">
+          <span class="ambil-nama">PSIKOLOG</span>
+          <span class="badge-code">P</span>
+        </div>
+        <button class="btn btn-primary btn-block" type="button" data-action="ambil">Ambil Nomor</button>
+        <details>
+          <summary class="ambil-priority-label">Ambil dengan prioritas ▼</summary>
+          <div class="ambil-chips">
+            <button class="chip" type="button" data-priority="Lansia">Lansia</button>
+            <button class="chip" type="button" data-priority="Disabilitas">Disabilitas</button>
+            <button class="chip" type="button" data-priority="VIP">VIP</button>
+          </div>
+        </details>
+      </article>
+
+    </section>
+  </main>
+
+  <footer class="page-foot">
+    Jenis antrian baru muncul otomatis. Data 18:02:18
+  </footer>
+</body>
+</html>

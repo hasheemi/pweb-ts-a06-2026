@@ -1,0 +1,921 @@
+/* =========================================================================
+   RSMuhammadiyah Gresik — Antrian App
+   Single stylesheet shared by all pages.
+   Plain CSS only (no framework). Sections:
+     1.  Design tokens (:root)
+     2.  Base / reset
+     3.  Helpers (hidden, spinner, badges, chips)
+     4.  Buttons
+     5.  Forms / inputs / selects
+     6.  Topbar / page layout
+     7.  login.html
+     8.  index.html (Dashboard Admin)
+     9.  operator.html
+     10. layar.html
+     11. ambil-antrian.html
+     12. Responsive
+   ========================================================================= */
+
+/* -------------------------------------------------------------------------
+   1. DESIGN TOKENS
+   Spacing scale: 2px, 10px, 18px, 30px, 60px
+   Radius: sm=4px, md=8px, lg=20px, xl/full=pill
+   ------------------------------------------------------------------------- */
+:root {
+  --primary: #237227;
+  --secondary: #065f46;
+  --tertiary: #D1D5DB;
+  --neutral: #F3F4F6;
+  --surface: #FFFFFF;
+  --on-surface: #111827;
+  --error: #B91C1C;
+  --border: #D1D5DB;
+  --muted: #6B7280;
+
+  --error-bg: #FEE2E2;
+
+  --font-head: 'Raleway', system-ui, sans-serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-label: 'Roboto', system-ui, sans-serif;
+
+  --sp-1: 2px;
+  --sp-2: 10px;
+  --sp-3: 18px;
+  --sp-4: 30px;
+  --sp-5: 60px;
+
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 20px;
+  --r-pill: 9999px;
+}
+
+/* -------------------------------------------------------------------------
+   2. BASE / RESET
+   ------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--on-surface);
+  background: var(--neutral);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-head);
+  font-weight: 700;
+  margin: 0;
+  color: var(--on-surface);
+}
+
+p {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: var(--secondary);
+}
+
+/* -------------------------------------------------------------------------
+   3. HELPERS
+   ------------------------------------------------------------------------- */
+.hidden {
+  display: none !important;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.text-error {
+  color: var(--error);
+}
+
+.text-success {
+  color: var(--primary);
+}
+
+/* small code badge (e.g. "A", "G") */
+.badge-code {
+  font-family: var(--font-label);
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--on-surface);
+  background: var(--neutral);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  min-width: 26px;
+  height: 26px;
+  padding: 0 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* pill status badge */
+.badge {
+  font-family: var(--font-label);
+  font-weight: 600;
+  font-size: 12px;
+  border-radius: var(--r-pill);
+  padding: 3px 12px;
+  display: inline-block;
+}
+
+.badge-success {
+  background: #DCFCE7;
+  color: var(--primary);
+}
+
+.badge-muted {
+  background: var(--neutral);
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+
+/* priority chip (ambil-antrian) */
+.chip {
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--on-surface);
+  background: var(--neutral);
+  border: 1px solid var(--border);
+  border-radius: var(--r-pill);
+  padding: 6px 16px;
+  display: inline-block;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.chip:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+/* dotted "live" indicator */
+.dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primary);
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+/* spinner (login loading state) */
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-top-color: #fff;
+  border-radius: 50%;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 8px;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* -------------------------------------------------------------------------
+   4. BUTTONS
+   ------------------------------------------------------------------------- */
+.btn {
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1;
+  border: 1px solid transparent;
+  border-radius: var(--r-pill);
+  padding: 12px 22px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn:disabled,
+.btn.is-disabled {
+  background: var(--neutral);
+  color: var(--muted);
+  border-color: var(--border);
+  cursor: not-allowed;
+}
+
+/* primary */
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+.btn-primary:hover:not(:disabled):not(.is-disabled) {
+  background: #1c5e20;
+  border-color: #1c5e20;
+}
+
+/* secondary (dark green) */
+.btn-secondary {
+  background: var(--secondary);
+  color: #fff;
+  border-color: var(--secondary);
+}
+
+.btn-secondary:hover {
+  background: #044a36;
+  border-color: #044a36;
+}
+
+/* dark */
+.btn-dark {
+  background: var(--on-surface);
+  color: #fff;
+  border-color: var(--on-surface);
+}
+
+.btn-dark:hover {
+  background: #000;
+  border-color: #000;
+}
+
+/* outline (neutral) */
+.btn-outline {
+  background: var(--surface);
+  color: var(--on-surface);
+  border-color: var(--border);
+}
+
+.btn-outline:hover {
+  background: var(--neutral);
+}
+
+/* outline green */
+.btn-outline-primary {
+  background: var(--surface);
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn-outline-primary:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* outline red */
+.btn-outline-danger {
+  background: var(--surface);
+  color: var(--error);
+  border-color: var(--error);
+}
+
+.btn-outline-danger:hover {
+  background: var(--error);
+  color: #fff;
+}
+
+/* small size */
+.btn-sm {
+  font-size: 12px;
+  padding: 7px 14px;
+}
+
+/* full width */
+.btn-block {
+  width: 100%;
+}
+
+/* -------------------------------------------------------------------------
+   5. FORMS
+   ------------------------------------------------------------------------- */
+.field {
+  display: block;
+  margin-bottom: var(--sp-3);
+}
+
+.field > .label {
+  display: block;
+  font-family: var(--font-label);
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: var(--on-surface);
+}
+
+.input,
+.select {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--on-surface);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 15px 18px;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.input::placeholder,
+.select {
+  color: var(--muted);
+}
+
+.select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%236B7280' stroke-width='1.6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 18px center;
+  padding-right: 44px;
+}
+
+.input:focus,
+.select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(35, 114, 39, 0.15);
+}
+
+/* alert / error box */
+.alert {
+  border-radius: var(--r-md);
+  padding: 12px 18px;
+  font-size: 14px;
+  font-family: var(--font-label);
+}
+
+.alert-error {
+  background: var(--error-bg);
+  color: var(--error);
+}
+
+/* -------------------------------------------------------------------------
+   6. TOPBAR / PAGE LAYOUT
+   ------------------------------------------------------------------------- */
+.topbar {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: var(--sp-3) var(--sp-4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+}
+
+.topbar .topbar-title {
+  font-size: 32px;
+}
+
+.topbar .topbar-sub {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+}
+
+.page {
+  padding: var(--sp-4);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* generic card */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--sp-4);
+}
+
+.card-title {
+  font-family: var(--font-label);
+  font-weight: 700;
+  font-size: 16px;
+  margin: 0 0 var(--sp-3);
+  color: var(--on-surface);
+}
+
+/* -------------------------------------------------------------------------
+   7. login.html
+   ------------------------------------------------------------------------- */
+.login-wrap {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-4);
+  background:
+    radial-gradient(900px 500px at 12% -10%, rgba(35, 114, 39, 0.10), transparent 60%),
+    radial-gradient(900px 500px at 100% 110%, rgba(6, 95, 70, 0.10), transparent 60%),
+    var(--surface);
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--sp-5) var(--sp-4);
+}
+
+.login-head {
+  text-align: center;
+  margin-bottom: var(--sp-4);
+}
+
+.login-head h1 {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 40px;
+  margin-bottom: 6px;
+}
+
+.login-head p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.login-brand {
+  font-family: var(--font-label);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--primary);
+  text-align: center;
+  margin-bottom: var(--sp-2);
+}
+
+.login-footer {
+  text-align: center;
+  margin-top: var(--sp-3);
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.login-error {
+  margin-bottom: var(--sp-3);
+}
+
+.login-loading {
+  margin-top: var(--sp-2);
+  text-align: center;
+  font-family: var(--font-label);
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.login-loading .spinner {
+  border-color: rgba(35, 114, 39, 0.25);
+  border-top-color: var(--primary);
+}
+
+/* -------------------------------------------------------------------------
+   8. index.html — Dashboard Admin
+   ------------------------------------------------------------------------- */
+.dash-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-4);
+  align-items: start;
+}
+
+/* inline "add jenis" form */
+.jenis-form {
+  display: flex;
+  gap: var(--sp-2);
+  align-items: center;
+  margin-bottom: var(--sp-3);
+  flex-wrap: wrap;
+}
+
+.jenis-form .input-code {
+  max-width: 80px;
+  text-align: center;
+  font-family: var(--font-label);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.jenis-form .input-nama {
+  flex: 1 1 160px;
+}
+
+/* jenis list */
+.jenis-list {
+  border-top: 1px solid var(--border);
+}
+
+.jenis-list > li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  padding: var(--sp-3) 0;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.jenis-info .jenis-nama {
+  font-family: var(--font-label);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--on-surface);
+}
+
+.jenis-info .jenis-sub {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.jenis-actions {
+  display: flex;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+}
+
+.jenis-item.is-inactive .jenis-nama {
+  color: var(--muted);
+}
+
+/* terbitkan form */
+.terbitkan-form .btn {
+  margin-top: 0;
+}
+
+/* grouped ticket list */
+.ticket-group {
+  margin-top: var(--sp-3);
+}
+
+.ticket-group-title {
+  font-family: var(--font-label);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 var(--sp-2);
+  padding-top: var(--sp-2);
+  border-top: 1px solid var(--border);
+}
+
+.ticket-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.ticket-code {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.ticket-meta {
+  flex: 1 1 auto;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.ticket-actions {
+  display: flex;
+  gap: var(--sp-2);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* -------------------------------------------------------------------------
+   9. operator.html
+   ------------------------------------------------------------------------- */
+.op-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-4);
+}
+
+.op-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--sp-4);
+}
+
+.op-card-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-4);
+}
+
+.op-card-head .op-nama {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 22px;
+}
+
+.op-card-head .op-menunggu {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.op-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-4);
+}
+
+.op-col-label {
+  font-family: var(--font-label);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.op-col-right {
+  text-align: right;
+}
+
+.op-number {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 40px;
+  line-height: 1.1;
+}
+
+.op-number.current {
+  color: var(--primary);
+}
+
+.op-number.next {
+  color: var(--on-surface);
+  font-weight: 700;
+}
+
+.op-priority {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.op-empty {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.op-foot {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.op-foot .btn-primary {
+  flex: 1 1 auto;
+}
+
+/* -------------------------------------------------------------------------
+   10. layar.html
+   ------------------------------------------------------------------------- */
+.layar-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.layar-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--sp-4);
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+}
+
+.layar-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+}
+
+.layar-card-head .layar-nama {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.layar-body {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--sp-3) 0;
+}
+
+.layar-called-label {
+  font-family: var(--font-label);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.layar-call-number {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 56px;
+  line-height: 1;
+  color: var(--primary);
+}
+
+.layar-empty {
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.layar-empty-sub {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+.layar-foot {
+  border-top: 1px solid var(--border);
+  padding-top: var(--sp-2);
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* -------------------------------------------------------------------------
+   11. ambil-antrian.html
+   ------------------------------------------------------------------------- */
+.ambil-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.ambil-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--sp-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.ambil-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+  margin-bottom: 6px;
+}
+
+.ambil-card-head .ambil-nama {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.ambil-priority-label {
+  font-family: var(--font-label);
+  font-size: 12px;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.ambil-priority-label:hover {
+  color: var(--primary);
+}
+
+.ambil-chips {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 2px;
+}
+
+.page-foot {
+  padding: var(--sp-3) var(--sp-4);
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* -------------------------------------------------------------------------
+   12. RESPONSIVE
+   ------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .layar-grid,
+  .ambil-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .topbar .topbar-title {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 900px) {
+  .dash-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: var(--sp-3);
+  }
+
+  .topbar {
+    padding: var(--sp-3);
+  }
+
+  .topbar .topbar-title {
+    font-size: 24px;
+  }
+
+  .op-grid,
+  .layar-grid,
+  .ambil-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .op-body {
+    grid-template-columns: 1fr;
+  }
+
+  .op-col-right {
+    text-align: left;
+  }
+
+  .op-number {
+    font-size: 34px;
+  }
+
+  .layar-card {
+    min-height: 220px;
+  }
+
+  .layar-call-number {
+    font-size: 44px;
+  }
+
+  .login-card {
+    padding: var(--sp-4) var(--sp-3);
+  }
+}

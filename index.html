@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Admin — RSMG</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700;800&family=Plus+Jakarta+Sans:wght@400&family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1 class="topbar-title">Dashboard Admin</h1>
+      <p class="topbar-sub">Reset harian agar penomoran antrian mulai dari awal.</p>
+    </div>
+    <div class="topbar-actions">
+      <button id="btn-reset-antrian" class="btn btn-outline-danger" type="button">Reset Antrian</button>
+      <button id="btn-keluar" class="btn btn-secondary" type="button">Keluar</button>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="dash-grid">
+
+      <!-- ============================ KOLOM KIRI ============================ -->
+      <section class="card" aria-labelledby="jenis-title">
+        <h2 id="jenis-title" class="card-title">Jenis antrian</h2>
+
+        <form class="jenis-form" id="jenis-form">
+          <input id="jenis-kode" class="input input-code" type="text" maxlength="1" placeholder="C" aria-label="Kode jenis antrian">
+          <input id="jenis-nama" class="input input-nama" type="text" placeholder="Contoh: Farmasi" aria-label="Nama jenis antrian">
+          <button id="jenis-tambah" class="btn btn-dark" type="button">Tambah</button>
+        </form>
+
+        <ul class="jenis-list" id="jenis-list">
+          <li class="jenis-item" data-jenis="UMUM-1">
+            <div class="jenis-info">
+              <span class="jenis-nama">UMUM-1</span>
+              <span class="jenis-sub">Kode A · 0 menunggu</span>
+            </div>
+            <div class="jenis-actions">
+              <button class="btn btn-outline-primary btn-sm" type="button" data-action="toggle">Nonaktifkan</button>
+              <button class="btn btn-outline-danger btn-sm" type="button" data-action="hapus">Hapus</button>
+            </div>
+          </li>
+
+          <li class="jenis-item" data-jenis="UMUM-2">
+            <div class="jenis-info">
+              <span class="jenis-nama">UMUM-2</span>
+              <span class="jenis-sub">Kode B · 2 menunggu</span>
+            </div>
+            <div class="jenis-actions">
+              <button class="btn btn-outline-primary btn-sm" type="button" data-action="toggle">Nonaktifkan</button>
+              <button class="btn btn-outline-danger btn-sm" type="button" data-action="hapus">Hapus</button>
+            </div>
+          </li>
+
+          <li class="jenis-item" data-jenis="UMUM-3">
+            <div class="jenis-info">
+              <span class="jenis-nama">UMUM-3</span>
+              <span class="jenis-sub">Kode C · 0 menunggu</span>
+            </div>
+            <div class="jenis-actions">
+              <button class="btn btn-outline-primary btn-sm" type="button" data-action="toggle">Nonaktifkan</button>
+              <button class="btn btn-outline-danger btn-sm" type="button" data-action="hapus">Hapus</button>
+            </div>
+          </li>
+
+          <li class="jenis-item" data-jenis="GIGI">
+            <div class="jenis-info">
+              <span class="jenis-nama">GIGI</span>
+              <span class="jenis-sub">Kode G · 3 menunggu</span>
+            </div>
+            <div class="jenis-actions">
+              <button class="btn btn-outline-primary btn-sm" type="button" data-action="toggle">Nonaktifkan</button>
+              <button class="btn btn-outline-danger btn-sm" type="button" data-action="hapus">Hapus</button>
+            </div>
+          </li>
+
+          <li class="jenis-item" data-jenis="FARMASI">
+            <div class="jenis-info">
+              <span class="jenis-nama">FARMASI</span>
+              <span class="jenis-sub">Kode F · 0 menunggu</span>
+            </div>
+            <div class="jenis-actions">
+              <button class="btn btn-outline-primary btn-sm" type="button" data-action="toggle">Nonaktifkan</button>
+              <button class="btn btn-outline-danger btn-sm" type="button" data-action="hapus">Hapus</button>
+            </div>
+          </li>
+
+          <!-- Contoh item NONAKTIF: tombol "Aktifkan" -->
+          <li class="jenis-item is-inactive" data-jenis="PSIKOLOG">
+            <div class="jenis-info">
+              <span class="jenis-nama">PSIKOLOG</span>
+              <span class="jenis-sub">Kode P · nonaktif · 0 menunggu</span>
+            </div>
+            <div class="jenis-actions">
+              <button class="btn btn-outline-primary btn-sm" type="button" data-action="toggle">Aktifkan</button>
+              <button class="btn btn-outline-danger btn-sm" type="button" data-action="hapus">Hapus</button>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ============================ KOLOM KANAN ============================ -->
+      <section class="card" aria-labelledby="terbit-title">
+        <h2 id="terbit-title" class="card-title">Terbitkan tiket</h2>
+
+        <form class="terbitkan-form" id="terbitkan-form">
+          <label class="field">
+            <span class="label">Jenis antrian</span>
+            <select id="terbit-jenis" class="select" name="jenis">
+              <option value="">Pilih jenis antrian</option>
+              <option value="UMUM-1">UMUM-1</option>
+              <option value="UMUM-2">UMUM-2</option>
+              <option value="UMUM-3">UMUM-3</option>
+              <option value="GIGI">GIGI</option>
+              <option value="FARMASI">FARMASI</option>
+              <option value="PSIKOLOG">PSIKOLOG</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span class="label">Prioritas</span>
+            <select id="terbit-prioritas" class="select" name="prioritas">
+              <option value="Normal">Normal</option>
+              <option value="Lansia">Lansia</option>
+              <option value="Disabilitas">Disabilitas</option>
+              <option value="VIP">VIP</option>
+            </select>
+          </label>
+
+          <button id="terbit-submit" class="btn btn-primary btn-block" type="button">Terbitkan</button>
+        </form>
+
+        <!-- Daftar tiket, dikelompokkan per jenis antrian -->
+        <div class="ticket-group">
+          <h3 class="ticket-group-title">UMUM-1</h3>
+
+          <article class="ticket-row" data-jenis="UMUM-1" data-priority="Normal">
+            <span class="ticket-code">A-001</span>
+            <span class="ticket-meta">Normal · Dipanggil</span>
+            <span class="ticket-actions">
+              <button class="btn btn-outline-primary btn-sm" type="button" data-action="panggil">Panggil</button>
+              <button class="btn btn-outline-danger btn-sm" type="button" data-action="lewati">Lewati</button>
+            </span>
+          </article>
+        </div>
+
+        <div class="ticket-group">
+          <h3 class="ticket-group-title">UMUM-2</h3>
+
+          <article class="ticket-row" data-jenis="UMUM-2" data-priority="Disabilitas">
+            <span class="ticket-code">B-004</span>
+            <span class="ticket-meta">Disabilitas · Menunggu</span>
+            <span class="ticket-actions">
+              <button class="btn btn-outline-primary btn-sm" type="button" data-action="panggil">Panggil</button>
+              <button class="btn btn-outline-danger btn-sm" type="button" data-action="lewati">Lewati</button>
+            </span>
+          </article>
+        </div>
+
+        <div class="ticket-group">
+          <h3 class="ticket-group-title">UMUM-3</h3>
+
+          <article class="ticket-row" data-jenis="UMUM-3" data-priority="Lansia">
+            <span class="ticket-code">C-001</span>
+            <span class="ticket-meta">Lansia · Dipanggil</span>
+            <span class="ticket-actions">
+              <button class="btn btn-outline-primary btn-sm" type="button" data-action="panggil">Panggil</button>
+              <button class="btn btn-outline-danger btn-sm" type="button" data-action="lewati">Lewati</button>
+            </span>
+          </article>
+        </div>
+
+        <div class="ticket-group">
+          <h3 class="ticket-group-title">GIGI</h3>
+
+          <article class="ticket-row" data-jenis="GIGI" data-priority="Normal">
+            <span class="ticket-code">G-003</span>
+            <span class="ticket-meta">Normal · Selesai</span>
+            <span class="ticket-actions">
+              <span class="badge-success">Selesai</span>
+            </span>
+          </article>
+        </div>
+
+        <div class="ticket-group">
+          <h3 class="ticket-group-title">FARMASI</h3>
+
+          <article class="ticket-row" data-jenis="FARMASI" data-priority="Normal">
+            <span class="ticket-code">F-001</span>
+            <span class="ticket-meta">Normal · Dipanggil</span>
+            <span class="ticket-actions">
+              <button class="btn btn-outline-primary btn-sm" type="button" data-action="panggil">Panggil</button>
+              <button class="btn btn-outline-danger btn-sm" type="button" data-action="lewati">Lewati</button>
+            </span>
+          </article>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</body>
+</html>
