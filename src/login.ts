@@ -98,7 +98,7 @@ if (loginForm && loginButton) {
 
       window.location.replace(
         role === "admin"
-          ? "index.html"
+          ? "admin.html"
           : "operator.html"
       );
     } catch (error) {

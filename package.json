@@ -2,6 +2,7 @@
   "name": "pweb-ts-a06-2026",
   "version": "1.0.0",
   "private": true,
+  "description": "Sistem Antrian Rumah Sakit - PWEB Modul 3",
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "watch": "tsc -p tsconfig.json --watch"
