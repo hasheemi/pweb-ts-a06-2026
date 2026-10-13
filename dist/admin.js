@@ -1,6 +1,6 @@
 "use strict";
 /// <reference path="./shared.ts" />
-const adminSession = requireSession(["admin"]);
+const adminSession = requireSession(["admin", "moderator"]);
 setUserLabel(adminSession);
 bindLogoutButton();
 const typeList = document.querySelector("#jenis-list");

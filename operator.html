@@ -1,176 +1,234 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Panel Operator — RSMG</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700;800&family=Plus+Jakarta+Sans:wght@400&family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <header class="topbar">
-    <div>
-      <h1 class="topbar-title">Panel Operator</h1>
-      <p class="topbar-sub">Panggil dan selesaikan tiket antrian.</p>
-    </div>
-    <div class="topbar-actions">
-      <button id="btn-keluar" class="btn btn-secondary" type="button">Keluar</button>
-    </div>
-  </header>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Panel Operator - RSMG</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Raleway:wght@700;800&family=Plus+Jakarta+Sans:wght@400&family=Roboto:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <header class="topbar">
+            <div>
+                <h1 class="topbar-title">Panel Operator</h1>
+                <p class="topbar-sub">Panggil dan selesaikan tiket antrian.</p>
+            </div>
+            <div class="topbar-actions">
+                <a id="btn-dashboard" class="btn btn-outline" href="index.html">Dashboard</a>
+                <button id="btn-keluar" class="btn btn-secondary" type="button">Keluar</button>
+            </div>
+        </header>
 
-  <main class="page">
-    <div class="op-grid">
+        <main class="page">
+            <div class="op-grid">
+                <!-- UMUM-1 -->
+                <article class="op-card" data-jenis="UMUM-1">
+                    <div class="op-card-head">
+                        <span class="op-nama">UMUM-1</span>
+                        <span class="op-menunggu">0 menunggu</span>
+                    </div>
+                    <div class="op-body">
+                        <div class="op-col">
+                            <p class="op-col-label">Sedang dipanggil</p>
+                            <p class="op-number current">A-001</p>
+                        </div>
+                        <div class="op-col op-col-right">
+                            <p class="op-col-label">Berikutnya</p>
+                            <p class="op-number next">—</p>
+                            <p class="op-priority">&nbsp;</p>
+                        </div>
+                    </div>
+                    <p class="op-empty hidden">Tidak ada tiket menunggu untuk jenis antrian ini.</p>
+                    <div class="op-foot">
+                        <button
+                            class="btn btn-primary btn-block is-disabled"
+                            type="button"
+                            data-action="panggil"
+                        >
+                            Panggil Berikutnya
+                        </button>
+                        <button class="btn btn-outline btn-sm" type="button" data-action="selesai">
+                            Selesai
+                        </button>
+                    </div>
+                </article>
 
-      <!-- UMUM-1 -->
-      <article class="op-card" data-jenis="UMUM-1">
-        <div class="op-card-head">
-          <span class="op-nama">UMUM-1</span>
-          <span class="op-menunggu">0 menunggu</span>
-        </div>
-        <div class="op-body">
-          <div class="op-col">
-            <p class="op-col-label">Sedang dipanggil</p>
-            <p class="op-number current">A-001</p>
-          </div>
-          <div class="op-col op-col-right">
-            <p class="op-col-label">Berikutnya</p>
-            <p class="op-number next">—</p>
-            <p class="op-priority">&nbsp;</p>
-          </div>
-        </div>
-        <p class="op-empty hidden">Tidak ada tiket menunggu untuk jenis antrian ini.</p>
-        <div class="op-foot">
-          <button class="btn btn-primary btn-block is-disabled" type="button" data-action="panggil">Panggil Berikutnya</button>
-          <button class="btn btn-outline btn-sm" type="button" data-action="selesai">Selesai</button>
-        </div>
-      </article>
+                <!-- UMUM-2 -->
+                <article class="op-card" data-jenis="UMUM-2">
+                    <div class="op-card-head">
+                        <span class="op-nama">UMUM-2</span>
+                        <span class="op-menunggu">2 menunggu</span>
+                    </div>
+                    <div class="op-body">
+                        <div class="op-col">
+                            <p class="op-col-label">Sedang dipanggil</p>
+                            <p class="op-number current">—</p>
+                        </div>
+                        <div class="op-col op-col-right">
+                            <p class="op-col-label">Berikutnya</p>
+                            <p class="op-number next">B-003</p>
+                            <p class="op-priority">Prioritas Disabilitas</p>
+                        </div>
+                    </div>
+                    <p class="op-empty hidden">Tidak ada tiket menunggu untuk jenis antrian ini.</p>
+                    <div class="op-foot">
+                        <button
+                            class="btn btn-primary btn-block"
+                            type="button"
+                            data-action="panggil"
+                        >
+                            Panggil Berikutnya
+                        </button>
+                        <button
+                            class="btn btn-outline btn-sm is-disabled"
+                            type="button"
+                            data-action="selesai"
+                        >
+                            Selesai
+                        </button>
+                    </div>
+                </article>
 
-      <!-- UMUM-2 -->
-      <article class="op-card" data-jenis="UMUM-2">
-        <div class="op-card-head">
-          <span class="op-nama">UMUM-2</span>
-          <span class="op-menunggu">2 menunggu</span>
-        </div>
-        <div class="op-body">
-          <div class="op-col">
-            <p class="op-col-label">Sedang dipanggil</p>
-            <p class="op-number current">—</p>
-          </div>
-          <div class="op-col op-col-right">
-            <p class="op-col-label">Berikutnya</p>
-            <p class="op-number next">B-003</p>
-            <p class="op-priority">Prioritas Disabilitas</p>
-          </div>
-        </div>
-        <p class="op-empty hidden">Tidak ada tiket menunggu untuk jenis antrian ini.</p>
-        <div class="op-foot">
-          <button class="btn btn-primary btn-block" type="button" data-action="panggil">Panggil Berikutnya</button>
-          <button class="btn btn-outline btn-sm is-disabled" type="button" data-action="selesai">Selesai</button>
-        </div>
-      </article>
+                <!-- UMUM-3 -->
+                <article class="op-card" data-jenis="UMUM-3">
+                    <div class="op-card-head">
+                        <span class="op-nama">UMUM-3</span>
+                        <span class="op-menunggu">0 menunggu</span>
+                    </div>
+                    <div class="op-body">
+                        <div class="op-col">
+                            <p class="op-col-label">Sedang dipanggil</p>
+                            <p class="op-number current">C-001</p>
+                        </div>
+                        <div class="op-col op-col-right">
+                            <p class="op-col-label">Berikutnya</p>
+                            <p class="op-number next">—</p>
+                            <p class="op-priority">&nbsp;</p>
+                        </div>
+                    </div>
+                    <p class="op-empty hidden">Tidak ada tiket menunggu untuk jenis antrian ini.</p>
+                    <div class="op-foot">
+                        <button
+                            class="btn btn-primary btn-block is-disabled"
+                            type="button"
+                            data-action="panggil"
+                        >
+                            Panggil Berikutnya
+                        </button>
+                        <button class="btn btn-outline btn-sm" type="button" data-action="selesai">
+                            Selesai
+                        </button>
+                    </div>
+                </article>
 
-      <!-- UMUM-3 -->
-      <article class="op-card" data-jenis="UMUM-3">
-        <div class="op-card-head">
-          <span class="op-nama">UMUM-3</span>
-          <span class="op-menunggu">0 menunggu</span>
-        </div>
-        <div class="op-body">
-          <div class="op-col">
-            <p class="op-col-label">Sedang dipanggil</p>
-            <p class="op-number current">C-001</p>
-          </div>
-          <div class="op-col op-col-right">
-            <p class="op-col-label">Berikutnya</p>
-            <p class="op-number next">—</p>
-            <p class="op-priority">&nbsp;</p>
-          </div>
-        </div>
-        <p class="op-empty hidden">Tidak ada tiket menunggu untuk jenis antrian ini.</p>
-        <div class="op-foot">
-          <button class="btn btn-primary btn-block is-disabled" type="button" data-action="panggil">Panggil Berikutnya</button>
-          <button class="btn btn-outline btn-sm" type="button" data-action="selesai">Selesai</button>
-        </div>
-      </article>
+                <!-- GIGI -->
+                <article class="op-card" data-jenis="GIGI">
+                    <div class="op-card-head">
+                        <span class="op-nama">GIGI</span>
+                        <span class="op-menunggu">2 menunggu</span>
+                    </div>
+                    <div class="op-body">
+                        <div class="op-col">
+                            <p class="op-col-label">Sedang dipanggil</p>
+                            <p class="op-number current">G-003</p>
+                        </div>
+                        <div class="op-col op-col-right">
+                            <p class="op-col-label">Berikutnya</p>
+                            <p class="op-number next">G-001</p>
+                            <p class="op-priority">Prioritas Normal</p>
+                        </div>
+                    </div>
+                    <p class="op-empty hidden">Tidak ada tiket menunggu untuk jenis antrian ini.</p>
+                    <div class="op-foot">
+                        <button
+                            class="btn btn-primary btn-block"
+                            type="button"
+                            data-action="panggil"
+                        >
+                            Panggil Berikutnya
+                        </button>
+                        <button class="btn btn-outline btn-sm" type="button" data-action="selesai">
+                            Selesai
+                        </button>
+                    </div>
+                </article>
 
-      <!-- GIGI -->
-      <article class="op-card" data-jenis="GIGI">
-        <div class="op-card-head">
-          <span class="op-nama">GIGI</span>
-          <span class="op-menunggu">2 menunggu</span>
-        </div>
-        <div class="op-body">
-          <div class="op-col">
-            <p class="op-col-label">Sedang dipanggil</p>
-            <p class="op-number current">G-003</p>
-          </div>
-          <div class="op-col op-col-right">
-            <p class="op-col-label">Berikutnya</p>
-            <p class="op-number next">G-001</p>
-            <p class="op-priority">Prioritas Normal</p>
-          </div>
-        </div>
-        <p class="op-empty hidden">Tidak ada tiket menunggu untuk jenis antrian ini.</p>
-        <div class="op-foot">
-          <button class="btn btn-primary btn-block" type="button" data-action="panggil">Panggil Berikutnya</button>
-          <button class="btn btn-outline btn-sm" type="button" data-action="selesai">Selesai</button>
-        </div>
-      </article>
+                <!-- FARMASI -->
+                <article class="op-card" data-jenis="FARMASI">
+                    <div class="op-card-head">
+                        <span class="op-nama">FARMASI</span>
+                        <span class="op-menunggu">0 menunggu</span>
+                    </div>
+                    <div class="op-body">
+                        <div class="op-col">
+                            <p class="op-col-label">Sedang dipanggil</p>
+                            <p class="op-number current">F-001</p>
+                        </div>
+                        <div class="op-col op-col-right">
+                            <p class="op-col-label">Berikutnya</p>
+                            <p class="op-number next">—</p>
+                            <p class="op-priority">&nbsp;</p>
+                        </div>
+                    </div>
+                    <p class="op-empty hidden">Tidak ada tiket menunggu untuk jenis antrian ini.</p>
+                    <div class="op-foot">
+                        <button
+                            class="btn btn-primary btn-block is-disabled"
+                            type="button"
+                            data-action="panggil"
+                        >
+                            Panggil Berikutnya
+                        </button>
+                        <button class="btn btn-outline btn-sm" type="button" data-action="selesai">
+                            Selesai
+                        </button>
+                    </div>
+                </article>
 
-      <!-- FARMASI -->
-      <article class="op-card" data-jenis="FARMASI">
-        <div class="op-card-head">
-          <span class="op-nama">FARMASI</span>
-          <span class="op-menunggu">0 menunggu</span>
-        </div>
-        <div class="op-body">
-          <div class="op-col">
-            <p class="op-col-label">Sedang dipanggil</p>
-            <p class="op-number current">F-001</p>
-          </div>
-          <div class="op-col op-col-right">
-            <p class="op-col-label">Berikutnya</p>
-            <p class="op-number next">—</p>
-            <p class="op-priority">&nbsp;</p>
-          </div>
-        </div>
-        <p class="op-empty hidden">Tidak ada tiket menunggu untuk jenis antrian ini.</p>
-        <div class="op-foot">
-          <button class="btn btn-primary btn-block is-disabled" type="button" data-action="panggil">Panggil Berikutnya</button>
-          <button class="btn btn-outline btn-sm" type="button" data-action="selesai">Selesai</button>
-        </div>
-      </article>
+                <!-- PSIKOLOG -->
+                <article class="op-card" data-jenis="PSIKOLOG">
+                    <div class="op-card-head">
+                        <span class="op-nama">PSIKOLOG</span>
+                        <span class="op-menunggu">1 menunggu</span>
+                    </div>
+                    <div class="op-body">
+                        <div class="op-col">
+                            <p class="op-col-label">Sedang dipanggil</p>
+                            <p class="op-number current">—</p>
+                        </div>
+                        <div class="op-col op-col-right">
+                            <p class="op-col-label">Berikutnya</p>
+                            <p class="op-number next">P-001</p>
+                            <p class="op-priority">Prioritas Normal</p>
+                        </div>
+                    </div>
+                    <p class="op-empty hidden">Tidak ada tiket menunggu untuk jenis antrian ini.</p>
+                    <div class="op-foot">
+                        <button
+                            class="btn btn-primary btn-block"
+                            type="button"
+                            data-action="panggil"
+                        >
+                            Panggil Berikutnya
+                        </button>
+                        <button
+                            class="btn btn-outline btn-sm is-disabled"
+                            type="button"
+                            data-action="selesai"
+                        >
+                            Selesai
+                        </button>
+                    </div>
+                </article>
+            </div>
+        </main>
 
-      <!-- PSIKOLOG -->
-      <article class="op-card" data-jenis="PSIKOLOG">
-        <div class="op-card-head">
-          <span class="op-nama">PSIKOLOG</span>
-          <span class="op-menunggu">1 menunggu</span>
-        </div>
-        <div class="op-body">
-          <div class="op-col">
-            <p class="op-col-label">Sedang dipanggil</p>
-            <p class="op-number current">—</p>
-          </div>
-          <div class="op-col op-col-right">
-            <p class="op-col-label">Berikutnya</p>
-            <p class="op-number next">P-001</p>
-            <p class="op-priority">Prioritas Normal</p>
-          </div>
-        </div>
-        <p class="op-empty hidden">Tidak ada tiket menunggu untuk jenis antrian ini.</p>
-        <div class="op-foot">
-          <button class="btn btn-primary btn-block" type="button" data-action="panggil">Panggil Berikutnya</button>
-          <button class="btn btn-outline btn-sm is-disabled" type="button" data-action="selesai">Selesai</button>
-        </div>
-      </article>
-
-    </div>
-  </main>
-
-  <script src="dist/shared.js" defer></script>
-  <script src="dist/operator.js" defer></script>
-</body>
+        <script src="dist/shared.js" defer></script>
+        <script src="dist/operator.js" defer></script>
+    </body>
 </html>

@@ -1,5 +1,21 @@
 "use strict";
 /// <reference path="./shared.ts" />
+const LOCAL_ACCOUNTS = [
+    {
+        username: "admin",
+        password: "admin123",
+        role: "admin",
+        firstName: "Admin",
+        redirect: "index.html"
+    },
+    {
+        username: "opr",
+        password: "opr123",
+        role: "operator",
+        firstName: "Operator",
+        redirect: "operator.html"
+    }
+];
 const loginForm = document.querySelector("#login-form");
 const loginButton = document.querySelector("#login-submit");
 const loginLoading = document.querySelector("#login-loading");
@@ -18,6 +34,18 @@ if (loginForm && loginButton) {
         loginLoading?.classList.remove("hidden");
         loginError?.classList.add("hidden");
         try {
+            const localAccount = LOCAL_ACCOUNTS.find(account => account.username === username &&
+                account.password === password);
+            if (localAccount) {
+                const session = {
+                    token: `${localAccount.role}-${Date.now()}`,
+                    role: localAccount.role,
+                    firstName: localAccount.firstName
+                };
+                localStorage.setItem(AUTH_KEY, JSON.stringify(session));
+                window.location.replace(localAccount.redirect);
+                return;
+            }
             const response = await fetch("https://dummyjson.com/auth/login", {
                 method: "POST",
                 headers: {
@@ -37,17 +65,13 @@ if (loginForm && loginButton) {
             if (!token) {
                 throw new Error("Server tidak mengirim token autentikasi.");
             }
-            const rawRole = (data.role || "user").toLowerCase();
-            const role = rawRole === "moderator" ? "admin" : rawRole;
             const session = {
                 token,
-                role,
+                role: "user",
                 firstName: data.firstName || data.username || username
             };
             localStorage.setItem(AUTH_KEY, JSON.stringify(session));
-            window.location.replace(role === "admin"
-                ? "index.html"
-                : "operator.html");
+            window.location.replace("ambil-antrian.html");
         }
         catch (error) {
             showLoginError(error instanceof Error

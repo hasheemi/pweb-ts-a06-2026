@@ -1,55 +1,74 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Masuk — RSMG</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700;800&family=Plus+Jakarta+Sans:wght@400&family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <main class="login-wrap">
-    <section class="login-card" aria-labelledby="login-title">
-      <p class="login-brand">RSMuhammadiyah Gresik</p>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Masuk - RSMG</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Raleway:wght@700;800&family=Plus+Jakarta+Sans:wght@400&family=Roboto:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <main class="login-wrap">
+            <section class="login-card" aria-labelledby="login-title">
+                <p class="login-brand">RSMuhammadiyah Gresik</p>
 
-      <header class="login-head">
-        <h1 id="login-title">Masuk</h1>
-        <p>Masuk untuk mengelola antrian rumah sakit.</p>
-      </header>
+                <header class="login-head">
+                    <h1 id="login-title">Masuk</h1>
+                    <p>Masuk untuk mengelola antrian rumah sakit.</p>
+                </header>
 
-      <!-- Error state: hidden by default, shown by JS -->
-      <div id="login-error" class="alert alert-error login-error hidden" role="alert">
-        Username atau password salah
-      </div>
+                <!-- Error state: hidden by default, shown by JS -->
+                <div id="login-error" class="alert alert-error login-error hidden" role="alert">
+                    Username atau password salah
+                </div>
 
-      <form id="login-form" novalidate>
-        <label class="field">
-          <span class="label">Username</span>
-          <input id="login-username" class="input" type="text" name="username" placeholder="emilys" autocomplete="username">
-        </label>
+                <form id="login-form" novalidate>
+                    <label class="field">
+                        <span class="label">Username</span>
+                        <input
+                            id="login-username"
+                            class="input"
+                            type="text"
+                            name="username"
+                            placeholder="emilys"
+                            autocomplete="username"
+                        />
+                    </label>
 
-        <label class="field">
-          <span class="label">Password</span>
-          <input id="login-password" class="input" type="password" name="password" placeholder="********" autocomplete="current-password">
-        </label>
+                    <label class="field">
+                        <span class="label">Password</span>
+                        <input
+                            id="login-password"
+                            class="input"
+                            type="password"
+                            name="password"
+                            placeholder="********"
+                            autocomplete="current-password"
+                        />
+                    </label>
 
-        <button id="login-submit" class="btn btn-primary btn-block" type="submit">Masuk</button>
-      </form>
+                    <button id="login-submit" class="btn btn-primary btn-block" type="submit">
+                        Masuk
+                    </button>
+                </form>
 
-      <!-- Loading state: hidden by default, shown by JS -->
-      <p id="login-loading" class="login-loading hidden" aria-live="polite">
-        <span class="spinner" aria-hidden="true"></span>Memproses...
-      </p>
+                <!-- Loading state: hidden by default, shown by JS -->
+                <p id="login-loading" class="login-loading hidden" aria-live="polite">
+                    <span class="spinner" aria-hidden="true"></span>Memproses...
+                </p>
 
-      <p class="login-footer">Gunakan akun uji dari dummyjson.com/users</p>
-    </section>
-  </main>
+                <p class="login-footer">
+                    Admin: admin / admin123 · Operator: opr / opr123 · User: akun dummyjson.com
+                </p>
+            </section>
+        </main>
 
-
-
-  <script src="dist/shared.js" defer></script>
-  <script src="dist/login.js" defer></script>
-</body>
+        <script src="dist/shared.js" defer></script>
+        <script src="dist/login.js" defer></script>
+    </body>
 </html>

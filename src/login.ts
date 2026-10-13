@@ -10,6 +10,31 @@ interface LoginResponse {
   message?: string;
 }
 
+interface LocalAccount {
+  username: string;
+  password: string;
+  role: string;
+  firstName: string;
+  redirect: string;
+}
+
+const LOCAL_ACCOUNTS: LocalAccount[] = [
+  {
+    username: "admin",
+    password: "admin123",
+    role: "admin",
+    firstName: "Admin",
+    redirect: "index.html"
+  },
+  {
+    username: "opr",
+    password: "opr123",
+    role: "operator",
+    firstName: "Operator",
+    redirect: "operator.html"
+  }
+];
+
 const loginForm =
   document.querySelector<HTMLFormElement>("#login-form");
 
@@ -48,6 +73,28 @@ if (loginForm && loginButton) {
     loginError?.classList.add("hidden");
 
     try {
+      const localAccount = LOCAL_ACCOUNTS.find(
+        account =>
+          account.username === username &&
+          account.password === password
+      );
+
+      if (localAccount) {
+        const session: AuthSession = {
+          token: `${localAccount.role}-${Date.now()}`,
+          role: localAccount.role,
+          firstName: localAccount.firstName
+        };
+
+        localStorage.setItem(
+          AUTH_KEY,
+          JSON.stringify(session)
+        );
+
+        window.location.replace(localAccount.redirect);
+        return;
+      }
+
       const response = await fetch(
         "https://dummyjson.com/auth/login",
         {
@@ -80,14 +127,9 @@ if (loginForm && loginButton) {
         );
       }
 
-      const rawRole = (data.role || "user").toLowerCase();
-
-      const role =
-        rawRole === "moderator" ? "admin" : rawRole;
-
       const session: AuthSession = {
         token,
-        role,
+        role: "user",
         firstName: data.firstName || data.username || username
       };
 
@@ -96,11 +138,7 @@ if (loginForm && loginButton) {
         JSON.stringify(session)
       );
 
-      window.location.replace(
-        role === "admin"
-          ? "admin.html"
-          : "operator.html"
-      );
+      window.location.replace("ambil-antrian.html");
     } catch (error) {
       showLoginError(
         error instanceof Error

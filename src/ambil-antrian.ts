@@ -1,7 +1,17 @@
 /// <reference path="./shared.ts" />
 
+// Halaman ini hanya untuk pasien/user biasa yang sudah login.
+// Operator yang mencoba masuk akan ditolak dan diarahkan ke login.
+const session = requireSession(["user"]);
+
+setUserLabel(session);
+bindLogoutButton();
+
 const takeGrid =
   document.querySelector<HTMLElement>(".ambil-grid")!;
+
+const pageFoot =
+  document.querySelector<HTMLElement>(".page-foot");
 
 const selectedPriority = new Map<string, Priority>();
 const LAST_TICKET_KEY = "pweb_last_ticket_id";
@@ -17,35 +27,103 @@ resultBox.style.cssText =
 
 takeGrid.insertAdjacentElement("afterend", resultBox);
 
+function renderTicketResult(ticket: QueueTicket): void {
+  resultBox.style.display = "block";
+
+  resultBox.innerHTML = `
+    <p id="ticket-called-label"
+       class="layar-called-label ${
+         ticket.status === "Dipanggil" ? "" : "hidden"
+       }">
+      <span class="dot"></span>Dipanggil
+    </p>
+    <p class="layar-empty-sub">Nomor antrean Anda</p>
+    <p class="layar-call-number">${formatTicket(ticket)}</p>
+    <p class="ambil-priority-label">
+      Prioritas: ${escapeText(ticket.priority)}
+    </p>
+    <p id="ticket-status-message" aria-live="polite"></p>
+  `;
+
+  updateTicketStatusMessage();
+}
+
 function updateTicketStatusMessage(): void {
   if (!monitoredTicketId) return;
 
-  const ticket = getTickets().find(item => item.id === monitoredTicketId);
+  const ticket = getTickets().find(
+    item => item.id === monitoredTicketId
+  );
+
   if (!ticket) return;
 
-  const statusMessage = resultBox.querySelector<HTMLElement>("#ticket-status-message");
+  const statusMessage =
+    resultBox.querySelector<HTMLElement>("#ticket-status-message");
+
   if (!statusMessage) return;
 
+  const calledLabel =
+    resultBox.querySelector<HTMLElement>("#ticket-called-label");
+
+  statusMessage.classList.remove(
+    "alert",
+    "alert-error",
+    "text-success",
+    "muted"
+  );
+  statusMessage.style.fontWeight = "";
+
+  calledLabel?.classList.toggle(
+    "hidden",
+    ticket.status !== "Dipanggil"
+  );
+
   if (ticket.status === "Dipanggil") {
-    statusMessage.textContent = "Nomor antrean Anda telah dipanggil. Silakan menuju loket.";
-    statusMessage.classList.remove("alert-error");
+    statusMessage.textContent =
+      "Nomor antrean Anda telah dipanggil. Silakan menuju loket.";
+    statusMessage.classList.add("text-success");
     statusMessage.style.fontWeight = "700";
   } else if (ticket.status === "Selesai") {
-    statusMessage.textContent = "Pelayanan untuk nomor antrean Anda telah selesai.";
-    statusMessage.style.fontWeight = "600";
+    statusMessage.textContent =
+      "Pelayanan untuk nomor antrean Anda telah selesai.";
+    statusMessage.classList.add("muted");
   } else if (ticket.status === "Dilewati") {
-    statusMessage.textContent = "Nomor antrean Anda dilewati. Silakan hubungi petugas.";
-    statusMessage.classList.add("alert-error");
+    statusMessage.textContent =
+      "Nomor antrean Anda dilewati. Silakan hubungi petugas.";
+    statusMessage.classList.add("alert", "alert-error");
     statusMessage.style.fontWeight = "600";
   } else {
-    statusMessage.textContent = "Status: Menunggu panggilan operator.";
-    statusMessage.classList.remove("alert-error");
-    statusMessage.style.fontWeight = "400";
+    statusMessage.textContent =
+      "Status: menunggu panggilan operator.";
+    statusMessage.classList.add("muted");
   }
+}
+
+let lastGridSignature = "";
+
+function gridSignature(): string {
+  const tickets = getTickets();
+
+  return getTypes()
+    .filter(type => type.active)
+    .map(type => {
+      const waiting = tickets.filter(ticket =>
+        ticket.typeId === type.id &&
+        ticket.status === "Menunggu"
+      ).length;
+
+      const priority =
+        selectedPriority.get(type.id) || "Normal";
+
+      return `${type.id}:${waiting}:${priority}`;
+    })
+    .join("|");
 }
 
 function renderTakePage(): void {
   const tickets = getTickets();
+
+  lastGridSignature = gridSignature();
 
   takeGrid.innerHTML = getTypes()
     .filter(type => type.active)
@@ -107,6 +185,20 @@ function renderTakePage(): void {
     }).join("");
 }
 
+function renderTakePageIfChanged(): void {
+  if (gridSignature() === lastGridSignature) return;
+
+  renderTakePage();
+}
+
+function updateClock(): void {
+  if (!pageFoot) return;
+
+  pageFoot.textContent =
+    "Jenis antrian baru muncul otomatis. Data " +
+    new Date().toLocaleTimeString("id-ID");
+}
+
 takeGrid.addEventListener("click", event => {
   const button =
     (event.target as HTMLElement)
@@ -142,23 +234,10 @@ takeGrid.addEventListener("click", event => {
         selectedPriority.get(typeId) || "Normal"
       );
 
-      resultBox.style.display = "block";
-
       monitoredTicketId = ticket.id;
       localStorage.setItem(LAST_TICKET_KEY, ticket.id);
 
-      resultBox.innerHTML = `
-        <p class="layar-empty-sub">Nomor antrean Anda</p>
-        <p class="layar-call-number">
-          ${formatTicket(ticket)}
-        </p>
-        <p>Prioritas: ${ticket.priority}.</p>
-        <p id="ticket-status-message" aria-live="polite">
-          Status: Menunggu panggilan operator.
-        </p>
-      `;
-
-      updateTicketStatusMessage();
+      renderTicketResult(ticket);
       renderTakePage();
     } catch (error) {
       resultBox.style.display = "block";
@@ -195,28 +274,28 @@ document
   });
 
 renderTakePage();
+updateClock();
 
 // Pulihkan tiket terakhir jika pasien memuat ulang halaman.
 if (monitoredTicketId) {
-  const previousTicket = getTickets().find(item => item.id === monitoredTicketId);
+  const previousTicket = getTickets().find(
+    item => item.id === monitoredTicketId
+  );
+
   if (previousTicket) {
-    resultBox.style.display = "block";
-    resultBox.innerHTML = `
-      <p class="layar-empty-sub">Nomor antrean Anda</p>
-      <p class="layar-call-number">${formatTicket(previousTicket)}</p>
-      <p>Prioritas: ${previousTicket.priority}.</p>
-      <p id="ticket-status-message" aria-live="polite"></p>
-    `;
-    updateTicketStatusMessage();
+    renderTicketResult(previousTicket);
   }
 }
 
+// Realtime: pantau perubahan status tiket dari panel operator.
 window.setInterval(() => {
-  renderTakePage();
+  renderTakePageIfChanged();
   updateTicketStatusMessage();
+  updateClock();
 }, 1000);
 
 window.addEventListener("storage", () => {
-  renderTakePage();
+  renderTakePageIfChanged();
   updateTicketStatusMessage();
+  updateClock();
 });

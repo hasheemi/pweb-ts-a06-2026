@@ -1,6 +1,6 @@
 /// <reference path="./shared.ts" />
 
-const operatorSession = requireSession(["admin", "user"]);
+const operatorSession = requireSession(["operator"]);
 
 setUserLabel(operatorSession);
 bindLogoutButton();

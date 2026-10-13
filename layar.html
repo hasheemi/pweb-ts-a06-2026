@@ -1,112 +1,121 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Layar Antrian — RSMG</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700;800&family=Plus+Jakarta+Sans:wght@400&family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <header class="topbar">
-    <div>
-      <h1 class="topbar-title">Nomor sedang dipanggil</h1>
-      <p class="topbar-sub">Diperbarui 18:01:54</p>
-    </div>
-    <div class="topbar-actions">
-      <button id="btn-layar" class="btn btn-dark" type="button">Layar Antrian</button>
-      <a id="btn-ambil" class="btn btn-outline" href="ambil-antrian.html">Ambil Nomor</a>
-      <button id="btn-fullscreen" class="btn btn-outline" type="button">Keluar Layar Penuh</button>
-    </div>
-  </header>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Layar Antrian - RSMG</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Raleway:wght@700;800&family=Plus+Jakarta+Sans:wght@400&family=Roboto:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <header class="topbar">
+            <div>
+                <h1 class="topbar-title">Nomor sedang dipanggil</h1>
+                <p class="topbar-sub">Diperbarui 18:01:54</p>
+            </div>
+            <div class="topbar-actions">
+                <button id="btn-layar" class="btn btn-dark" type="button">Layar Antrian</button>
+                <a id="btn-ambil" class="btn btn-outline" href="ambil-antrian.html">Ambil Nomor</a>
+                <button id="btn-fullscreen" class="btn btn-outline" type="button">
+                    Keluar Layar Penuh
+                </button>
+            </div>
+        </header>
 
-  <main class="page">
-    <section class="layar-grid" aria-label="Daftar nomor yang sedang dipanggil">
+        <main class="page">
+            <section class="layar-grid" aria-label="Daftar nomor yang sedang dipanggil">
+                <!-- UMUM-1 : ada dipanggil -->
+                <article class="layar-card" data-jenis="UMUM-1">
+                    <div class="layar-card-head">
+                        <span class="layar-nama">UMUM-1</span>
+                        <span class="badge-code">A</span>
+                    </div>
+                    <div class="layar-body">
+                        <p class="layar-called-label"><span class="dot"></span>Dipanggil</p>
+                        <p class="layar-call-number">A-001</p>
+                    </div>
+                    <p class="layar-foot">0 tiket menunggu</p>
+                </article>
 
-      <!-- UMUM-1 : ada dipanggil -->
-      <article class="layar-card" data-jenis="UMUM-1">
-        <div class="layar-card-head">
-          <span class="layar-nama">UMUM-1</span>
-          <span class="badge-code">A</span>
-        </div>
-        <div class="layar-body">
-          <p class="layar-called-label"><span class="dot"></span>Dipanggil</p>
-          <p class="layar-call-number">A-001</p>
-        </div>
-        <p class="layar-foot">0 tiket menunggu</p>
-      </article>
+                <!-- UMUM-2 : kosong -->
+                <article class="layar-card" data-jenis="UMUM-2">
+                    <div class="layar-card-head">
+                        <span class="layar-nama">UMUM-2</span>
+                        <span class="badge-code">B</span>
+                    </div>
+                    <div class="layar-body">
+                        <p class="layar-empty">Belum ada nomor dipanggil</p>
+                        <p class="layar-empty-sub">
+                            Nomor akan muncul setelah operator memanggil tiket.
+                        </p>
+                    </div>
+                    <p class="layar-foot">4 tiket menunggu</p>
+                </article>
 
-      <!-- UMUM-2 : kosong -->
-      <article class="layar-card" data-jenis="UMUM-2">
-        <div class="layar-card-head">
-          <span class="layar-nama">UMUM-2</span>
-          <span class="badge-code">B</span>
-        </div>
-        <div class="layar-body">
-          <p class="layar-empty">Belum ada nomor dipanggil</p>
-          <p class="layar-empty-sub">Nomor akan muncul setelah operator memanggil tiket.</p>
-        </div>
-        <p class="layar-foot">4 tiket menunggu</p>
-      </article>
+                <!-- UMUM-3 : kosong -->
+                <article class="layar-card" data-jenis="UMUM-3">
+                    <div class="layar-card-head">
+                        <span class="layar-nama">UMUM-3</span>
+                        <span class="badge-code">C</span>
+                    </div>
+                    <div class="layar-body">
+                        <p class="layar-empty">Belum ada nomor dipanggil</p>
+                        <p class="layar-empty-sub">
+                            Nomor akan muncul setelah operator memanggil tiket.
+                        </p>
+                    </div>
+                    <p class="layar-foot">1 tiket menunggu</p>
+                </article>
 
-      <!-- UMUM-3 : kosong -->
-      <article class="layar-card" data-jenis="UMUM-3">
-        <div class="layar-card-head">
-          <span class="layar-nama">UMUM-3</span>
-          <span class="badge-code">C</span>
-        </div>
-        <div class="layar-body">
-          <p class="layar-empty">Belum ada nomor dipanggil</p>
-          <p class="layar-empty-sub">Nomor akan muncul setelah operator memanggil tiket.</p>
-        </div>
-        <p class="layar-foot">1 tiket menunggu</p>
-      </article>
+                <!-- GIGI : ada dipanggil -->
+                <article class="layar-card" data-jenis="GIGI">
+                    <div class="layar-card-head">
+                        <span class="layar-nama">GIGI</span>
+                        <span class="badge-code">G</span>
+                    </div>
+                    <div class="layar-body">
+                        <p class="layar-called-label"><span class="dot"></span>Dipanggil</p>
+                        <p class="layar-call-number">G-003</p>
+                    </div>
+                    <p class="layar-foot">2 tiket menunggu</p>
+                </article>
 
-      <!-- GIGI : ada dipanggil -->
-      <article class="layar-card" data-jenis="GIGI">
-        <div class="layar-card-head">
-          <span class="layar-nama">GIGI</span>
-          <span class="badge-code">G</span>
-        </div>
-        <div class="layar-body">
-          <p class="layar-called-label"><span class="dot"></span>Dipanggil</p>
-          <p class="layar-call-number">G-003</p>
-        </div>
-        <p class="layar-foot">2 tiket menunggu</p>
-      </article>
+                <!-- FARMASI : ada dipanggil -->
+                <article class="layar-card" data-jenis="FARMASI">
+                    <div class="layar-card-head">
+                        <span class="layar-nama">FARMASI</span>
+                        <span class="badge-code">F</span>
+                    </div>
+                    <div class="layar-body">
+                        <p class="layar-called-label"><span class="dot"></span>Dipanggil</p>
+                        <p class="layar-call-number">F-001</p>
+                    </div>
+                    <p class="layar-foot">0 tiket menunggu</p>
+                </article>
 
-      <!-- FARMASI : ada dipanggil -->
-      <article class="layar-card" data-jenis="FARMASI">
-        <div class="layar-card-head">
-          <span class="layar-nama">FARMASI</span>
-          <span class="badge-code">F</span>
-        </div>
-        <div class="layar-body">
-          <p class="layar-called-label"><span class="dot"></span>Dipanggil</p>
-          <p class="layar-call-number">F-001</p>
-        </div>
-        <p class="layar-foot">0 tiket menunggu</p>
-      </article>
+                <!-- PSIKOLOG : kosong -->
+                <article class="layar-card" data-jenis="PSIKOLOG">
+                    <div class="layar-card-head">
+                        <span class="layar-nama">PSIKOLOG</span>
+                        <span class="badge-code">P</span>
+                    </div>
+                    <div class="layar-body">
+                        <p class="layar-empty">Belum ada nomor dipanggil</p>
+                        <p class="layar-empty-sub">
+                            Nomor akan muncul setelah operator memanggil tiket.
+                        </p>
+                    </div>
+                    <p class="layar-foot">3 tiket menunggu</p>
+                </article>
+            </section>
+        </main>
 
-      <!-- PSIKOLOG : kosong -->
-      <article class="layar-card" data-jenis="PSIKOLOG">
-        <div class="layar-card-head">
-          <span class="layar-nama">PSIKOLOG</span>
-          <span class="badge-code">P</span>
-        </div>
-        <div class="layar-body">
-          <p class="layar-empty">Belum ada nomor dipanggil</p>
-          <p class="layar-empty-sub">Nomor akan muncul setelah operator memanggil tiket.</p>
-        </div>
-        <p class="layar-foot">3 tiket menunggu</p>
-      </article>
-
-    </section>
-  </main>
-
-  <script src="dist/shared.js" defer></script>
-  <script src="dist/layar.js" defer></script>
-</body>
+        <script src="dist/shared.js" defer></script>
+        <script src="dist/layar.js" defer></script>
+    </body>
 </html>
